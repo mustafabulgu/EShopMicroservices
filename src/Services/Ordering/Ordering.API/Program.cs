@@ -1,7 +1,7 @@
 using Ordering.API;
 using Ordering.Application;
 using Ordering.Infrastructure;
-
+using Ordering.Infrastructure.Data.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 //add services to container
@@ -15,6 +15,9 @@ builder.Services.AddApplicationServices()
 
 var app = builder.Build();
 
-//app.
+if (app.Environment.IsDevelopment())
+{
+    await app.InitialiseDatabaseAsync();
+}
 //configure pipeline
 app.Run();
