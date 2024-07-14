@@ -1,6 +1,8 @@
 ﻿
 
 
+using BuildingBlocks.Messaging.Events;
+
 namespace Basket.API.Basket.GetBasket
 {
     public record GetBasketQuery(string UserName) : IQuery<GetBasketResult>;
@@ -9,7 +11,10 @@ namespace Basket.API.Basket.GetBasket
     {
         public async Task<GetBasketResult> Handle(GetBasketQuery query, CancellationToken cancellationToken)
         {
-           
+            var basketCheckoutEvent = new BasketCheckoutEvent();
+            var id = basketCheckoutEvent.Id;
+            var id2 = basketCheckoutEvent.Id;
+
             var basket =  await repository.GetBasket(query.UserName, cancellationToken);
             return new GetBasketResult(basket);
         }

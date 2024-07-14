@@ -1,6 +1,7 @@
 
 
 using BuildingBlocks.Exceptions.Handler;
+using BuildingBlocks.Messaging.MassTransit;
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 
@@ -43,6 +44,9 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
         };
         return handler;
     });
+
+//async services
+builder.Services.AddMessageBroker(builder.Configuration);
 
 //cross-cutting services
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();

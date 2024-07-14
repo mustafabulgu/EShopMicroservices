@@ -1,10 +1,4 @@
-﻿
-
-
-using Microsoft.EntityFrameworkCore;
-using Ordering.Domain.ValueObjects;
-
-namespace Ordering.Application.Orders.Commands.DeleteOrder
+﻿namespace Ordering.Application.Orders.Commands.DeleteOrder
 {
     public class DeleteOrderCommandHandler (IApplicationDbContext dbContext) : ICommandHandler<DeleteOrderCommand, DeleteOrderResult>
     {

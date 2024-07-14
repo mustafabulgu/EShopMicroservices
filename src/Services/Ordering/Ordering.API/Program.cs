@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 //Infrastructure - EF Core
 //Application - Mediatr
 //API - Carter, HealthChecks
-builder.Services.AddApplicationServices()
+builder.Services.AddApplicationServices(builder.Configuration)
     .AddInfrastructureServices(builder.Configuration)
-    .AddApiServices();
+    .AddApiServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -20,4 +20,5 @@ if (app.Environment.IsDevelopment())
     await app.InitialiseDatabaseAsync();
 }
 //configure pipeline
+app.UseApiServices();
 app.Run();
